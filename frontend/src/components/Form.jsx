@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api.js";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants.js";
 import "../styles/Form.css";
+import LoadingIndicator from "./LoadingIndicator.jsx";
 
 
 function Form ({route, method}){
@@ -57,6 +58,7 @@ function Form ({route, method}){
                 onChange={(e) => setPassword(e.target.value)}
                 required
             />
+            {loading && <LoadingIndicator />}
             <button className="form-button" type="submit">
                 {name}
             </button>

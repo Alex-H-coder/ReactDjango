@@ -8,7 +8,7 @@ import { ACCESS_TOKEN, REFRESH_TOKEN } from '../constants';
 function ProtectedRoute({children}){
     const [isAuthorized, setIsAuthorized] = useState(null)
 
-    useEffect(() => { // on component mount, check if user is authenticated and uses the auth function to verify token validity
+    useEffect(() => { // on component mount, check if user is authorized and uses the auth function to verify token validity
         auth().catch(() => setIsAuthorized(false))
     }, [])
 
@@ -34,13 +34,13 @@ function ProtectedRoute({children}){
 
 
     const auth = async () => {
-        const token = localStorage.getItem(ACCESS_TOKEN);//used to check if user is authenticated and has valid token
-        if(!token){
+        const token = localStorage.getItem(ACCESS_TOKEN);//used to check if user is authorized and has valid token
+        if(!token){ // if no token found, user is not authorized
             setIsAuthorized(false)
             return
         }
-        const decoded = jwtDecode(token);
-        const tokenExpiration = decoded.exp
+        const decoded = jwtDecode(token); // Decode the JWT to get its expiration time
+        const tokenExpiration = decoded.exp // expiration time in seconds
         const now = Date.now() / 1000; // in seconds
 
         if(tokenExpiration < now){

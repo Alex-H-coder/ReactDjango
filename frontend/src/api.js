@@ -19,4 +19,4 @@ api.interceptors.request.use(
     }
 )
 
-export default api; // Export the configured axios instancest ACCESS_TOKEN
+export default api; // Export the configured axios instances ACCESS_TOKEN

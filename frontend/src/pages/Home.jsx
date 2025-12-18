@@ -3,9 +3,9 @@ import api from "../api.js";
 import Note from "../components/Note.jsx";
 
 function Home() {
-    const [notes, setNotes] = useState([]);
-    const [content, setContent] = useState("");
-    const [title, setTitle] = useState("");
+    const [notes, setNotes] = useState([]); // used to store notes fetched from the backend
+    const [content, setContent] = useState(""); // used to store content of a new note being created
+    const [title, setTitle] = useState(""); // used to store title of a new note being created
 
     useEffect(() => { getNotes(); }, []);
 
@@ -18,9 +18,12 @@ function Home() {
     
 
     const deleteNote = (id) => {
-        api.delete(`api/notes/delete/${id}/`).then((response)=>{
-            if(response.status === 204) alert('Note deleted successfully');
-            else alert('Failed to delete note');
+        api.delete(`api/notes/delete/${id}/`)
+        .then((response)=>{
+            if(response.status === 204)
+                alert('Note deleted successfully');
+            else
+                alert('Failed to delete note');
             getNotes();
         })
         .catch((error) => {
