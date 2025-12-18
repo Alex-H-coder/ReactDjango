@@ -10,8 +10,8 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'password']
         extra_kwargs = {'password': {'write_only': True}} #this makes passwords be hushed and not returned by json
         
-    def create(self, validate_data):
-        user = User.objects.create_user(**validate_data)
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
         return user
     
 class NoteSerializer(serializers.ModelSerializer):
