@@ -1,0 +1,21 @@
+# .choreo/component.yaml
+version: 0.1
+component:
+  name: backend
+  displayName: "Backend Service"
+  type: service
+  source:
+    repository: ReactDjango
+    branch: main
+    directory: /backend
+  build:
+    preset: Python
+    languageVersion: 3.11.x
+    runCommand: python3 app.py
+
+endpoints:
+  - name: "REST API"
+    port: 8000
+    type: REST
+    networkVisibility: Public
+    context: /
