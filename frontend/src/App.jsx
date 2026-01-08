@@ -10,7 +10,7 @@ function Logout() {
   return <Navigate to="/login" />
 }
 function RegisterAndLogout(){
-  localStorage.clear();
+  localStorage.clear(); // ensure any existing session is cleared before registering a new user
   return <Register />
 }
 function App() {
@@ -20,6 +20,7 @@ function App() {
         <Route
           path="/" element={ <ProtectedRoute> <Home /> </ProtectedRoute>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/register" element={<RegisterAndLogout />} />
         <Route path="*" element={<NotFound />} /> //catch-all route for undefined paths
       </Routes>

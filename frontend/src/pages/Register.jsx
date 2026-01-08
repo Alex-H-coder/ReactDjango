@@ -1,4 +1,6 @@
+import Form from '../components/Form.jsx';
+
 function Register() {
-    return <div>Register Page</div>;
+    return <Form route='/api/user/register/' method='register' />;
 }
 export default Register;
